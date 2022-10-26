@@ -30,8 +30,8 @@ class LavoratoreAutonomo {
     }
     getRedditoAnnuoNetto() {
         let tasse_su_reddito = this.reddito_annuo_lordo * ((this.tasse_inps + this.tasse_irpef) / 100);
-        let reddito_annuo_netto = this.reddito_annuo_lordo - tasse_su_reddito;
-        console.log(`Il tuo reddito annuo netto è di ${reddito_annuo_netto}`);
+        let reddito_annuo_netto = Math.round(this.reddito_annuo_lordo - tasse_su_reddito);
+        console.log(`Il tuo reddito annuo netto è di ${reddito_annuo_netto}€`);
     }
 }
 class Fotografo extends LavoratoreAutonomo {
@@ -55,6 +55,7 @@ class Postproducer extends LavoratoreAutonomo {
 // PROGRAMMATORE
 console.log("PROGRAMMATORE");
 let prog1 = new Programmatore(30000);
+console.log(`Hai inserito un reddito annuo lordo di ${prog1.reddito_annuo_lordo}€`);
 prog1.getTasseIrpef();
 prog1.getTasseInps();
 prog1.getUtileTasse();
@@ -62,6 +63,7 @@ prog1.getRedditoAnnuoNetto();
 // POSTPRODUCER
 console.log("POSTPRODUCER");
 let post1 = new Postproducer(45000);
+console.log(`Hai inserito un reddito annuo lordo di ${post1.reddito_annuo_lordo}€`);
 post1.getTasseIrpef();
 post1.getTasseInps();
 post1.getUtileTasse();
@@ -69,6 +71,7 @@ post1.getRedditoAnnuoNetto();
 // FOTOGRAFO
 console.log("FOTOGRAFO");
 let foto1 = new Postproducer(14000);
+console.log(`Hai inserito un reddito annuo lordo di ${foto1.reddito_annuo_lordo}€`);
 foto1.getTasseIrpef();
 foto1.getTasseInps();
 foto1.getUtileTasse();
