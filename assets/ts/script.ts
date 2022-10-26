@@ -1,3 +1,4 @@
+// !creo la classe astratta Lavoratore autonomo a cui passo le proprietà
 abstract class LavoratoreAutonomo {
   codredd?: number;
   reddito_annuo_lordo: number;
@@ -9,6 +10,7 @@ abstract class LavoratoreAutonomo {
     this.tasse_inps = 33;
   }
 
+  // !metodo per settare le tasse irpef in base al reddito
   setTasseIrpef(reddito_annuo_lordo: number) {
     if (reddito_annuo_lordo < 15000) {
       return 23;
@@ -21,18 +23,22 @@ abstract class LavoratoreAutonomo {
     }
   }
 
+  // !metodo per visualizzare la percentuale tasse irpef
   getTasseIrpef(): void {
     console.log(`Le tue tasse Irpef corrispondono al ${this.tasse_irpef}%`);
   }
 
+  // !metodo per visualizzare la percentuale tasse inps
   getTasseInps(): void {
     console.log(`Le tue tasse Inps corrispondono al ${this.tasse_inps}%`);
   }
 
+  // !metodo per visualizzare il totale percentuale delle tasse
   getUtileTasse(): void {
     console.log(`Le tue tasse totali corrispondono al ${this.tasse_inps + this.tasse_irpef}%`);
   }
 
+  // !metodo per visualizzare il reddito annuo netto
   getRedditoAnnuoNetto(): void {
     let tasse_su_reddito: number = this.reddito_annuo_lordo * ((this.tasse_inps + this.tasse_irpef) / 100);
     let reddito_annuo_netto: number = Math.round(this.reddito_annuo_lordo - tasse_su_reddito);
@@ -40,6 +46,7 @@ abstract class LavoratoreAutonomo {
   }
 }
 
+// !estendo la classe astratta in sottoclassi assegnando solo diverse proprietà codredd per ogni tipo di lavoro
 class Fotografo extends LavoratoreAutonomo {
   constructor(reddito_annuo_lordo: number) {
     super(reddito_annuo_lordo);
@@ -61,16 +68,16 @@ class Postproducer extends LavoratoreAutonomo {
   }
 }
 
-// PROGRAMMATORE
+// * PROGRAMMATORE
 console.log("PROGRAMMATORE");
-let prog1 = new Programmatore(30000);
+let prog1 = new Programmatore(35000);
 console.log(`Hai inserito un reddito annuo lordo di ${prog1.reddito_annuo_lordo}€`);
 prog1.getTasseIrpef();
 prog1.getTasseInps();
 prog1.getUtileTasse();
 prog1.getRedditoAnnuoNetto();
 
-// POSTPRODUCER
+// * POSTPRODUCER
 console.log("POSTPRODUCER");
 let post1 = new Postproducer(45000);
 console.log(`Hai inserito un reddito annuo lordo di ${post1.reddito_annuo_lordo}€`);
@@ -79,9 +86,9 @@ post1.getTasseInps();
 post1.getUtileTasse();
 post1.getRedditoAnnuoNetto();
 
-// FOTOGRAFO
+// * FOTOGRAFO
 console.log("FOTOGRAFO");
-let foto1 = new Postproducer(14000);
+let foto1 = new Fotografo(97500);
 console.log(`Hai inserito un reddito annuo lordo di ${foto1.reddito_annuo_lordo}€`);
 foto1.getTasseIrpef();
 foto1.getTasseInps();
